@@ -9,23 +9,42 @@ This project target is Ubuntu/Debian system. It can be easily adpated for Redhat
 
 ### Idea 1: Do not use apt/yum/dnf to install
 - Additional software will install from tar ball(*.tar.gz), which downloaed from vendor directly.
-- It will install to **$HOME/opt**, or **/opt**
+- It will install to ```$HOME/opt```
 - Create soft link to the installation
 
-Why?
+Reason:
 - Install latest version software. The distribution come with older version
 - Avoid dependency on packages in system
 - Do NOT mixed with or override packages in the system
+- Does not need root priviliges
+- Most linux system are used by single user
 - Portable installation, easy to copy to other similar system
 
+Basic logic, using java as example: 
+- download JDK from oracle.com
+- store JDK tar ball(```jdk-8u151-linux-x64.tar.gz```) in ```$HOME/var/tmp```
+- JDK will untar to ```$HOME/opt/java-1.8.0u151```
+- create soft link ```$HOME/opt/java``` to this dir
+- ```JAVE_HOME``` will be ```$HOME/opt/java```
+- ```java``` will be in ```$HOME/opt/java/bin/java```
+- ```JAVA_HOME``` and ```PATH``` will set in ```$HOME/etc/profile.d/java_env```
+- ```.profile``` will include ```*_env*``` file in ```$HOME/etc/profile.d```
 
-### Idea 2: Home dir structure
-Create ```etc, opt, var``` in the ```$HOME``` dir.
+### Idea 2: Everything in Home dir
+Create ```etc, opt, var``` in the ```$HOME``` dir, similar to ```/etc, /opt /var```
+```bash
+$HOME
+  |-/etc                        # config files
+  |-/var                        # hold data, log, tmp
+  |-/opt                        # additional softwares
+```
+
+Detail:
 ```bash
 $HOME
   |-/etc                        # config files
   |---hosts                     # cp and override /etc/hosts
-  |---id_rsa.pub                # ssh pub key, copy to $HOME/.ssh/authorized_keys
+  |---authorized_keys                # ssh pub key, copy to $HOME/.ssh/authorized_keys
   |---profile                   # override $HOME/.profile
   |---/profile.d                # setup shell .profile
   |-----java_env                # JAVA env setting, JAVA_HOME, PATH
@@ -42,9 +61,8 @@ Create the dirs:
 ```bash
 cd $HOME
 mkdir -p etc etc/profile.d
-mkdir -p ssh opt var var/tmp
+mkdir -p opt var var/tmp
 ```
 
-
 ## TO DO
-- use rsync to replace scp
+

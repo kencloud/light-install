@@ -22,7 +22,7 @@ PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 # include env files from profile.d dir
 PFD=$HOME/etc/profile.d
 if [ -d $PFD ]; then
-    for F in `ls $PFD`; do
+    for F in `ls $PFD/*_env`; do
         #echo $F
         . "$PFD/$F"
     done
