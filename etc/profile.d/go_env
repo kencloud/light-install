@@ -1,0 +1,5 @@
+GOROOT=$HOME/opt/go
+
+PATH=$PATH:$GOROOT/bin
+
+export GOROOT PATH

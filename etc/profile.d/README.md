@@ -1,1 +1,0 @@
-dir for application env settings

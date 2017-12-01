@@ -1,0 +1,5 @@
+SPARK_HOME=$HOME/opt/spark
+
+PATH=$PATH:$SPARK_HOME/bin
+
+export PATH

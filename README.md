@@ -10,6 +10,7 @@ This project target is Ubuntu/Debian system. It can be easily adpated for Redhat
 ### Idea 1: Do not use apt/yum/dnf to install
 - Additional software will install from tar ball(*.tar.gz), which downloaed from vendor directly.
 - It will install to **$HOME/opt**, or **/opt**
+- Create soft link to the installation
 
 Why?
 - Install latest version software. The distribution come with older version
@@ -19,15 +20,16 @@ Why?
 
 
 ### Idea 2: Home dir structure
+Create ```etc, opt, var``` in the ```$HOME``` dir.
 ```bash
 $HOME
   |-/etc                        # config files
   |---hosts                     # cp and override /etc/hosts
+  |---id_rsa.pub                # ssh pub key, copy to $HOME/.ssh/authorized_keys
+  |---profile                   # override $HOME/.profile
   |---/profile.d                # setup shell .profile
   |-----java_env                # JAVA env setting, JAVA_HOME, PATH
-  |---/ssh                      # ssh keys and config
-  |-----id_rsa.pub              # ssh pub key, copy to $HOME/.ssh/authorized_keys
-  |-/var                        # hold data, log
+  |-/var                        # hold app data, log
   |---/tmp                      # downloaded packages
   |-/opt                        # additional softwares
   |---java                      # softlink to jdk1.8.0
@@ -38,6 +40,11 @@ $HOME
 
 Create the dirs:
 ```bash
+cd $HOME
 mkdir -p etc etc/profile.d
 mkdir -p ssh opt var var/tmp
 ```
+
+
+## TO DO
+- use rsync to replace scp

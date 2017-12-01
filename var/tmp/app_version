@@ -1,0 +1,12 @@
+# set VERSION for application to install
+# this file will be read by install.sh
+
+JAVA_VER=1.8.0u151
+
+GO_VER=1.9.2
+
+SCALA_VER=2.12.4
+
+SPARK_VER=2.2.0
+
+GRADLE_VER=4.3.1
