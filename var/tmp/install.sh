@@ -80,7 +80,7 @@ install_java()
 
     # JAVA_VER is from app_version, sourced at the beggining
     
-    for TAR in `ls $HOME/var/tmp/jdk* | tail -1`; do
+    for TAR in `ls $HOME/var/tmp/jdk* | grep $JAVA_VER`; do
         JAVA_HOME="$HOME/opt/java-$JAVA_VER"
         JAVA_LINK="$HOME/opt/java"
 
