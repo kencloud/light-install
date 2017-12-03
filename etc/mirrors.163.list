@@ -1,0 +1,12 @@
+### Use 163 mirrors as apt source
+##  copy to /etc/apt/sources.list.d/
+
+
+deb http://mirrors.163.com/ubuntu xenial main restricted
+deb-src http://mirrors.163.com/ubuntu xenial main restricted
+
+deb http://mirrors.163.com/ubuntu xenial-updates main restricted
+deb-src http://mirrors.163.com/ubuntu xenial-updates main restricted
+
+deb http://mirrors.163.com/ubuntu xenial-security main restricted
+deb-src http://mirrors.163.com/ubuntu xenial-security main restricted
