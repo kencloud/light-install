@@ -32,7 +32,7 @@ copy_all_files()
     ### install.sh should be in var/tmp on remote host
     if [ -f install.sh ]; then
         rm -f var/tmp/install.sh
-        ln install.sh var/tmp/
+        cp install.sh var/tmp/
     fi
 
     ### use rsync to copy

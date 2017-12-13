@@ -1,6 +1,6 @@
 ### set VERSION for application to install
 ##  this file will be read by install.sh
-##  comment out if do not want to install
+##  update the version number with latest downloaded package
 
 JAVA_VER=1.8.0u151
 
