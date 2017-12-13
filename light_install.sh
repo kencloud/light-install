@@ -13,6 +13,13 @@
 ### remote target host, cmd parameter $1
 RHOST=$1
 
+### remote user, cmd parameter $2
+if [ -e $2 ]; then
+    RUSER=$2
+else
+    RUSER=`id -un`
+fi
+
 copy_all_files()
 {
     ###
@@ -30,9 +37,9 @@ copy_all_files()
 
     ### use rsync to copy
     if [ -f rsync-filter ]; then
-        rsync -rv --exclude-from=rsync-filter etc var $RHOST:~/
+        rsync -rv --exclude-from=rsync-filter etc var $USER@$RHOST:~/
     else
-        rsync -rv etc var $RHOST:~/
+        rsync -rv etc var $USER@$RHOST:~/
     fi
 
     ### copy light_install to remote host
@@ -64,16 +71,16 @@ copy_ssh_key()
     KEY_FILE=etc/authorized_keys
     
     ### create .ssh dir
-    ssh $RHOST "mkdir -p ~/.ssh && chmod og-rx .ssh"
+    ssh $USER@$RHOST "mkdir -p ~/.ssh && chmod og-rx .ssh"
 
     ### copy ssh key file
     #cat $KEY_FILE | ssh $RHOST "cat >> ~/.ssh/authorized_keys"  # append to key file
-    scp $KEY_FILE $RHOST:~/.ssh/authorized_keys # overwrite the key file
+    scp $KEY_FILE $RUSER@$RHOST:~/.ssh/authorized_keys # overwrite the key file
 
     ### check authorized_keys file
     echo "==> Verify remote authorized_keys"
-    ssh $RHOST "cat ~/.ssh/authorized_keys | awk '{print \$3}'"
-    ssh $RHOST "uname -a; date"
+    ssh $RUSER@$RHOST "cat ~/.ssh/authorized_keys | awk '{print \$3}'"
+    ssh $RUSER@$RHOST "uname -a; date"
 
     if [ $? -eq 0 ]; then
         echo "OK. Copy ssh key successed!"; echo
@@ -86,7 +93,7 @@ remote_install()
     ### exec install.sh on remote host
     ###
 
-    ssh $RHOST "\$HOME/var/tmp/install.sh"
+    ssh $RUSER@$RHOST "\$HOME/var/tmp/install.sh"
 }
 
 ### #1 copy ssh key to remote host, comment out after success execution
