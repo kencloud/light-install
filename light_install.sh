@@ -14,10 +14,10 @@
 RHOST=$1
 
 ### remote user, cmd parameter $2
-if [ -e $2 ]; then
+RUSER=`id -un`
+
+if [ -n "$2" ]; then
     RUSER=$2
-else
-    RUSER=`id -un`
 fi
 
 copy_all_files()
@@ -28,12 +28,9 @@ copy_all_files()
 
     echo "==> Copy files"
 
-    ### link install.sh to var/tmp
-    ### install.sh should be in var/tmp on remote host
-    if [ -f install.sh ]; then
-        rm -f var/tmp/install.sh
-        cp install.sh var/tmp/
-    fi
+    ### put light_install.sh install.sh to var/tmp on remote host
+
+    cp light_install.sh install.sh var/tmp/
 
     ### use rsync to copy
     if [ -f rsync-filter ]; then
@@ -42,11 +39,6 @@ copy_all_files()
         rsync -rv etc var $USER@$RHOST:~/
     fi
 
-    ### copy light_install to remote host
-    ##  can be used to install other remote hosts in the remote cluster
-    ##  copy files among the remote cluster is much faster
-    
-    scp light_install.sh $RHOST:~/
 
     ### alternative scp, if rsync is not available
     # scp -r etc var $RHOST:\$HOME
