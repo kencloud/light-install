@@ -1,0 +1,5 @@
+KAFKA_HOME=$HOME/opt/kafka
+
+PATH=$PATH:$KAFKA_HOME/bin
+
+export PATH

@@ -65,4 +65,5 @@ mkdir -p opt var var/tmp
 ```
 
 ## TO DO
-
+- apt install unzip 
+- create kafka install
