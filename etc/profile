@@ -24,6 +24,6 @@ PFD=$HOME/etc/profile.d
 if [ -d $PFD ]; then
     for F in `ls $PFD/*_env`; do
         #echo $F
-        . "$PFD/$F"
+        . "$F"
     done
 fi
