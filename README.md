@@ -31,7 +31,9 @@ Basic logic, using java as example:
 - ```.profile``` will include ```*_env*``` file in ```$HOME/etc/profile.d```
 
 ### Idea 2: Everything in Home dir
-Create ```etc, opt, var``` in the ```$HOME``` dir, similar to ```/etc, /opt /var```
+Create ```etc, opt, var``` in the ```$HOME``` dir, similar to ```/etc, /opt /var```.
+Avoid permission issue on ```/etc, /opt /var```
+
 ```bash
 $HOME
   |-/etc                        # config files
@@ -49,8 +51,10 @@ $HOME
   |---/profile.d                # setup shell .profile
   |-----java_env                # JAVA env setting, JAVA_HOME, PATH
   |-/var                        # hold app data, log
+  |---app_version               # versions of packages to install
   |---/tmp                      # downloaded packages
   |-/opt                        # additional softwares
+  |---install.sh                # install script
   |---java                      # softlink to jdk1.8.0
   |---go                        # softlink to go-1.9.2
   |---/jdk1.8.0                 # JDK 1.8.0
@@ -59,11 +63,27 @@ $HOME
 
 Create the dirs:
 ```bash
+// shell
 cd $HOME
-mkdir -p etc etc/profile.d
-mkdir -p opt var var/tmp
+mkdir -p \
+  etc \
+  etc/profile.d \
+  opt \
+  var \
+  var/tmp
 ```
 
+## How to use
+### Stage 1: Prepare
+1. check out this code from github
+2. update ```etc/authorized_keys``` with public key
+3. put packages to install under ```var/tmp```. (i.e.: ```jdk-8u151-linux-x64.tar.gz```, etc)
+### Stage 2: Build tar and distribute
+1. run ```opt/build.sh```
+2. scp ```build/light-install.tgz``` to remote ```/var/tmp```
+### Stage 3: Install on remote host
+1. login remote host to ```$HOME```
+2. untar ```tar xzvf /vat/tmp/light-install.tgz```
+3. run ```opt/install.sh```
+
 ## TO DO
-- apt install unzip 
-- create kafka install

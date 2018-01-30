@@ -8,10 +8,41 @@
 PFD=$HOME/etc/profile.d
 
 ### get application version
-source var/tmp/app_version
+source var/app_version
 
 ### create $HOME/opt dir, make sure it exists
 mkdir -p $HOME/opt
+
+### install unzip
+install_unzip()
+{
+    echo "==> Install unzip"
+    sudo apt install -y unzip
+}
+
+copy_ssh_key()
+{
+    ###
+    ### copy ssh key file to remote authorized_keys
+    ### enable the login using ssh key without key in password
+    ###
+
+    echo "==> Copy authorized_keys"
+
+    ### ssh key file
+    KEY_FILE=etc/authorized_keys
+    
+    ### create .ssh dir
+    mkdir -p ~/.ssh && chmod og-rx .ssh
+
+    ### copy ssh key file
+    #cat $KEY_FILE | ssh $RHOST "cat >> ~/.ssh/authorized_keys"  # append to key file
+    cat $KEY_FILE >> ~/.ssh/authorized_keys # append to the key file, NOT overwrite
+
+    ### check authorized_keys file
+    echo "==> check authorized_keys"
+    cat ~/$KEY_FILE
+}
 
 setup_profiled()
 {
@@ -208,9 +239,12 @@ install_spark()
     done
 }
 
-
 main()
-{    
+{
+    install_unzip
+
+    copy_ssh_key
+
     setup_profiled
 
     install_java
