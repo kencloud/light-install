@@ -1,0 +1,5 @@
+SBT_HOME=$HOME/opt/sbt
+
+PATH=$SBT_HOME/bin:$PATH
+
+export PATH SBT_HOME

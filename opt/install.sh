@@ -156,6 +156,34 @@ install_scala()
     done
 }
 
+install_sbt()
+{
+    ###
+    ### install SBT to $HOME/opt
+    ###
+
+    # SBT_VER is from app_version, sourced at the beggining
+    
+    for TAR in `ls $HOME/var/tmp/sbt* | tail -1`; do
+        SBT_HOME="$HOME/opt/sbt-$SBT_VER"
+        SBT_LINK="$HOME/opt/sbt"
+
+        echo "==> Install SBT"    
+        echo "Install $TAR to $SBT_HOME"
+
+        install_any $TAR $SBT_HOME $SBT_LINK
+
+        source $HOME/.profile
+        sbt about
+        # rm -r project   ### remove temp project dir generate by sbt
+        if [ $? -eq 0 ]; then
+            sleep 1
+            echo "==) Done"
+            echo
+        fi
+    done
+}
+
 install_go()
 {
     ###
@@ -252,6 +280,8 @@ main()
     install_go
 
     install_scala
+
+    install_sbt
 
     install_gradle
 
