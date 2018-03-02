@@ -2,15 +2,15 @@
 ##  this file will be read by install.sh
 ##  update the version number with latest downloaded package
 
-JAVA_VER=1.8.0u151
+JAVA_VER=9.0.4
 
 GO_VER=1.9.2
 
 SCALA_VER=2.12.4
 
-SPARK_VER=2.2.0
+SPARK_VER=2.3.0
 
-GRADLE_VER=4.5
+GRADLE_VER=4.6
 
 KAFKA_VER=2.12-1.0.0
 

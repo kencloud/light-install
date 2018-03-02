@@ -55,6 +55,7 @@ $HOME
   |---/tmp                      # downloaded packages
   |-/opt                        # additional softwares
   |---install.sh                # install script
+  |---build.sh                  # build distribution tgz package
   |---java                      # softlink to jdk1.8.0
   |---go                        # softlink to go-1.9.2
   |---/jdk1.8.0                 # JDK 1.8.0
