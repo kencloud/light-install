@@ -44,6 +44,8 @@ $HOME
 Detail:
 ```bash
 $HOME
+  |-/light-install              # light install scripts: download, build, install
+  |-/bin                        # bin folder
   |-/etc                        # config files
   |---hosts                     # cp and override /etc/hosts
   |---authorized_keys           # ssh pub key, copy to $HOME/.ssh/authorized_keys
@@ -57,7 +59,7 @@ $HOME
   |---install.sh                # install script
   |---build.sh                  # build distribution tgz package
   |---java                      # softlink to jdk1.8.0
-  |---go                        # softlink to go-1.9.2
+  |---gobin                     # softlink to go-1.9.2
   |---/jdk1.8.0                 # JDK 1.8.0
   |---/go-1.9.2                 # Go lang 1.9.2
 ```
@@ -75,16 +77,16 @@ mkdir -p \
 ```
 
 ## How to use
-### Stage 1: Prepare
+### Stage 1: Download
 1. check out this code from github
 2. update ```etc/authorized_keys``` with public key
-3. put packages to install under ```var/tmp```. (i.e.: ```jdk-8u151-linux-x64.tar.gz```, etc)
+3. download packages ```light-install/download.sh``` to ```var/tmp```. (i.e.: ```jdk-8u162-linux-x64.tar.gz```, etc)
 ### Stage 2: Build tar and distribute
-1. run ```opt/build.sh```
+1. run ```light-install/build.sh```
 2. scp ```build/light-install.tgz``` to remote ```/var/tmp```
 ### Stage 3: Install on remote host
 1. login remote host to ```$HOME```
 2. untar ```tar xzvf /vat/tmp/light-install.tgz```
-3. run ```opt/install.sh```
+3. run ```light-install/install.sh```
 
 ## TO DO

@@ -4,7 +4,7 @@
 ### Download packages from official sites
 ###
 
-source etc/app_version
+source light-install/app_version
 
 download_go() 
 {
@@ -33,3 +33,4 @@ main()
   download_go
 }
 
+main

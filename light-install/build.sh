@@ -8,4 +8,4 @@
 # tar output file
 TARF="build/light_install.tgz"
 
-tar czvf $TARF bin etc opt var
+tar czvf $TARF light-install etc var

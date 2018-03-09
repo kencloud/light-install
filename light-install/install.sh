@@ -8,10 +8,10 @@
 PFD=$HOME/etc/profile.d
 
 ### get application version
-source etc/app_version
+source light-install/app_version
 
-### create $HOME/opt dir, make sure it exists
-mkdir -p $HOME/opt
+### create $HOME/opt, bin, etc, var dir, make sure they exist
+mkdir -p $HOME/opt $HOME/etc $HOME/bin $HOME/var $HOME/var/tmp
 
 ### install unzip
 install_unzip()
