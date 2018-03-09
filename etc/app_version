@@ -2,7 +2,7 @@
 ##  this file will be read by install.sh
 ##  update the version number with latest downloaded package
 
-JAVA_VER=1.9.4
+JAVA_VER=1.8.162
 
 GO_VER=1.10
 

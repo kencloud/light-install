@@ -195,7 +195,8 @@ install_go()
     
     for TAR in `ls $HOME/var/tmp/go* | tail -1`; do
         GO_HOME="$HOME/opt/go-$GO_VER"
-        GO_LINK="$HOME/opt/go"
+        GO_LINK="$HOME/opt/gobin"
+        GO_PATH="$HOME/opt/goapp"
 
         echo "==> Install Golang"    
         echo "Install $TAR to $GO_HOME"
@@ -208,6 +209,10 @@ install_go()
             echo "==) Done"
             echo
         fi
+
+        # create GOPATH dir
+        mkdir -p $GO_PATH
+        
     done
 }
 

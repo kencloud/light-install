@@ -1,4 +1,6 @@
-GOROOT=$HOME/opt/go
+GOROOT=$HOME/opt/gobin
+
+GOPATH=$HOME/opt/goapp
 
 PATH=$PATH:$GOROOT/bin
 
