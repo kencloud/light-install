@@ -46,12 +46,12 @@ Detail:
 $HOME
   |-/etc                        # config files
   |---hosts                     # cp and override /etc/hosts
-  |---authorized_keys                # ssh pub key, copy to $HOME/.ssh/authorized_keys
+  |---authorized_keys           # ssh pub key, copy to $HOME/.ssh/authorized_keys
+  |---app_version               # versions of packages to install
   |---profile                   # override $HOME/.profile
   |---/profile.d                # setup shell .profile
   |-----java_env                # JAVA env setting, JAVA_HOME, PATH
   |-/var                        # hold app data, log
-  |---app_version               # versions of packages to install
   |---/tmp                      # downloaded packages
   |-/opt                        # additional softwares
   |---install.sh                # install script

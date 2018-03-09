@@ -8,7 +8,7 @@
 PFD=$HOME/etc/profile.d
 
 ### get application version
-source var/app_version
+source etc/app_version
 
 ### create $HOME/opt dir, make sure it exists
 mkdir -p $HOME/opt

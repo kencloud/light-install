@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 ### build all-in-one tar ball
 ###
@@ -7,4 +8,4 @@
 # tar output file
 TARF="build/light_install.tgz"
 
-tar czvf $TARF etc opt var
+tar czvf $TARF bin etc opt var
